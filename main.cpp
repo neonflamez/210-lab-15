@@ -41,5 +41,31 @@ public:
         return screenWriter;
     }
 
-
+    void print() const{
+        cout << "Movie: " << screenWriter << endl;
+        cout << "   Year released: " << yearReleased << endl;
+        cout << "   Screenwriter: " << title << endl;
+    }
 };
+
+int main(){
+    ifstream inputFile("input.txt");
+
+    vector<Movie> movies;
+    string title, screenWriter;
+    int yearReleased;
+
+    while(getline(inputFile, title) && inputFile >> yearReleased){
+        getline(inputFile, screenWriter);
+        movies.emplace_back(title, yearReleased, screenWriter);
+    }
+
+    inputFile.close();
+
+    for (const auto& movie : movies){
+        movie.print();
+        cout << endl;
+    }
+
+    return 0;
+}
