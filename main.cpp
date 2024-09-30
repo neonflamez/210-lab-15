@@ -55,7 +55,9 @@ int main(){
     string title, screenWriter;
     int yearReleased;
 
-    while(getline(inputFile, title) && inputFile >> yearReleased){
+    while(getline(inputFile, title)){
+        inputFile >> yearReleased;
+        inputFile.ignore();
         getline(inputFile, screenWriter);
         movies.emplace_back(title, yearReleased, screenWriter);
     }
